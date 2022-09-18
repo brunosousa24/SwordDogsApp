@@ -8,9 +8,9 @@
 import Foundation
 
 struct DogBreed : Codable {
-    private var _breedName: String?
-    private var _breedImage: String?
-    private var _breedCategory: String?
-    private var _breedOrigin: String?
-    private var _breedTemperament: String?
+    let _breedName: String
+    let _breedImageURL: String
+    let _breedGroup: String
+    let _breedOrigin: String
+    let _breedTemperament: String
 }

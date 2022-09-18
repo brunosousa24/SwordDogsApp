@@ -17,8 +17,22 @@ class DogBreedImagesPage: UIViewController {
         self.title = "Dog Breed Images";
         _dogBreedListPage = tabBarController?.viewControllers?[1] as? DogBreedListPage
         
+        if let data = UserDefaults.standard.data(forKey: "dogBreedList") {
+            do {
+                // Create JSON Decoder
+                let decoder = JSONDecoder()
+
+                // Decode Note
+                let dogBreedList = try decoder.decode([DogBreed].self, from: data)
+                print(dogBreedList)
+
+            } catch {
+                print("Unable to Decode Array of DogBreed (\(error))")
+            }
+        }
+        
         APICaller().getBreedsData { dogBreedList in
-            
+            print(dogBreedList)
         }
     }
     
