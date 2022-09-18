@@ -10,15 +10,18 @@ import UIKit
 class DogBreedImagesPage: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tabeView: UITableView!
-    private var _dogBreedListPage : DogBreedListPage?
     private var _dogBreedList : [DogBreed] = []
     private var _dogBreedListShow : [DogBreed] = []
     private var _currentPage : Int = 1
     
     
     fileprivate func setupShowArrays(page: Int) {
+        let beforeCount = self._dogBreedListShow.count
         self._dogBreedListShow = Array(self._dogBreedList[0..<(self._dogBreedList.count > page*20 ? page*20 : self._dogBreedList.count)])
-        self.tabeView .reloadData()
+        let afterCount = self._dogBreedListShow.count
+        if afterCount != beforeCount {
+            self.tabeView .reloadData()
+        }
     }
     
     override func viewDidLoad() {
@@ -26,7 +29,6 @@ class DogBreedImagesPage: UIViewController, UITableViewDataSource, UITableViewDe
         self.title = "Dog Breed Images";
         tabeView.delegate = self
         tabeView.dataSource = self
-        _dogBreedListPage = tabBarController?.viewControllers?[1] as? DogBreedListPage
         
         APICaller().getBreedsData { dogBreedList, errorMessage in
             if errorMessage != nil {
@@ -47,7 +49,6 @@ class DogBreedImagesPage: UIViewController, UITableViewDataSource, UITableViewDe
             } else {
                 self._dogBreedList = dogBreedList
             }
-            
             self.setupShowArrays(page: self._currentPage)
         }
     }
@@ -63,7 +64,7 @@ class DogBreedImagesPage: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! DogBreedImageTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "dogBreedImageTableViewCell") as! DogBreedImageTableViewCell
         cell.dogBreedName.text = _dogBreedListShow[indexPath.row]._breedName
         cell.dogBreedUIImageView.loadFrom(URLAddress: _dogBreedListShow[indexPath.row]._breedImageURL)
         return cell
