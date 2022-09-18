@@ -11,7 +11,7 @@
         <!--Dog Breed List-->
         <scene sceneID="sr3-k7-hVR">
             <objects>
-                <viewController id="Byj-cq-01i" sceneMemberID="viewController">
+                <viewController id="Byj-cq-01i" customClass="DogBreedListPage" customModule="DogsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="e2e-RM-8Hs">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
