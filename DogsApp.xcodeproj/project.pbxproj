@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0051206728D65BAC000283B1 /* DogBreedImagesPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0051206628D65BAC000283B1 /* DogBreedImagesPage.swift */; };
+		0051206928D72F15000283B1 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0051206828D72F15000283B1 /* APICaller.swift */; };
+		0051206D28D7331E000283B1 /* DogBreed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0051206C28D7331E000283B1 /* DogBreed.swift */; };
 		00C47E2128D63B7600C67E53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C47E2028D63B7600C67E53 /* AppDelegate.swift */; };
 		00C47E2328D63B7600C67E53 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C47E2228D63B7600C67E53 /* SceneDelegate.swift */; };
 		00C47E2828D63B7600C67E53 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00C47E2628D63B7600C67E53 /* Main.storyboard */; };
@@ -15,6 +18,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0051206628D65BAC000283B1 /* DogBreedImagesPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogBreedImagesPage.swift; sourceTree = "<group>"; };
+		0051206828D72F15000283B1 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
+		0051206C28D7331E000283B1 /* DogBreed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogBreed.swift; sourceTree = "<group>"; };
 		00C47E1D28D63B7600C67E53 /* DogsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DogsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00C47E2028D63B7600C67E53 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00C47E2228D63B7600C67E53 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +83,8 @@
 		00C47E3728D63BDC00C67E53 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				0051206628D65BAC000283B1 /* DogBreedImagesPage.swift */,
+				0051206828D72F15000283B1 /* APICaller.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -84,6 +92,7 @@
 		00C47E3828D63BEB00C67E53 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0051206C28D7331E000283B1 /* DogBreed.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -159,8 +168,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0051206728D65BAC000283B1 /* DogBreedImagesPage.swift in Sources */,
 				00C47E2128D63B7600C67E53 /* AppDelegate.swift in Sources */,
+				0051206D28D7331E000283B1 /* DogBreed.swift in Sources */,
 				00C47E2328D63B7600C67E53 /* SceneDelegate.swift in Sources */,
+				0051206928D72F15000283B1 /* APICaller.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
