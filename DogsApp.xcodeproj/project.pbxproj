@@ -11,6 +11,7 @@
 		0051206928D72F15000283B1 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0051206828D72F15000283B1 /* APICaller.swift */; };
 		0051206D28D7331E000283B1 /* DogBreed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0051206C28D7331E000283B1 /* DogBreed.swift */; };
 		0051206F28D73896000283B1 /* DogBreedListPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0051206E28D73896000283B1 /* DogBreedListPage.swift */; };
+		0051207128D7AA78000283B1 /* DogBreedImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0051207028D7AA78000283B1 /* DogBreedImageTableViewCell.swift */; };
 		00C47E2128D63B7600C67E53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C47E2028D63B7600C67E53 /* AppDelegate.swift */; };
 		00C47E2328D63B7600C67E53 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C47E2228D63B7600C67E53 /* SceneDelegate.swift */; };
 		00C47E2828D63B7600C67E53 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00C47E2628D63B7600C67E53 /* Main.storyboard */; };
@@ -23,6 +24,7 @@
 		0051206828D72F15000283B1 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
 		0051206C28D7331E000283B1 /* DogBreed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogBreed.swift; sourceTree = "<group>"; };
 		0051206E28D73896000283B1 /* DogBreedListPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogBreedListPage.swift; sourceTree = "<group>"; };
+		0051207028D7AA78000283B1 /* DogBreedImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogBreedImageTableViewCell.swift; sourceTree = "<group>"; };
 		00C47E1D28D63B7600C67E53 /* DogsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DogsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00C47E2028D63B7600C67E53 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00C47E2228D63B7600C67E53 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 				0051206628D65BAC000283B1 /* DogBreedImagesPage.swift */,
 				0051206E28D73896000283B1 /* DogBreedListPage.swift */,
 				00C47E2628D63B7600C67E53 /* Main.storyboard */,
+				0051207028D7AA78000283B1 /* DogBreedImageTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -174,6 +177,7 @@
 				0051206728D65BAC000283B1 /* DogBreedImagesPage.swift in Sources */,
 				00C47E2128D63B7600C67E53 /* AppDelegate.swift in Sources */,
 				0051206F28D73896000283B1 /* DogBreedListPage.swift in Sources */,
+				0051207128D7AA78000283B1 /* DogBreedImageTableViewCell.swift in Sources */,
 				0051206D28D7331E000283B1 /* DogBreed.swift in Sources */,
 				00C47E2328D63B7600C67E53 /* SceneDelegate.swift in Sources */,
 				0051206928D72F15000283B1 /* APICaller.swift in Sources */,

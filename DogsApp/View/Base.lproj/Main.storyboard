@@ -49,10 +49,70 @@
                     <view key="view" contentMode="scaleToFill" id="inb-2J-B8f">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="2SJ-WW-TXf"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="1A9-2g-pqD">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="yyl-1F-4tE">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="PbT-Xe-dxF" customClass="DogBreedImageTableViewCell" customModule="DogsApp" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="44.5" width="414" height="70.5"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PbT-Xe-dxF" id="VDP-cD-vfw">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="70.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xzx-5H-pGg">
+                                                            <rect key="frame" x="20" y="10.5" width="50" height="50"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="50" id="JTA-fg-FOZ"/>
+                                                                <constraint firstAttribute="height" constant="50" id="bcf-XH-hZ9"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c0R-gm-bXd">
+                                                            <rect key="frame" x="90" y="25" width="284" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="c0R-gm-bXd" secondAttribute="trailing" constant="20" id="615-ad-NGL"/>
+                                                        <constraint firstItem="c0R-gm-bXd" firstAttribute="centerY" secondItem="xzx-5H-pGg" secondAttribute="centerY" id="Aym-of-6rB"/>
+                                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="xzx-5H-pGg" secondAttribute="bottom" constant="10" id="CwU-LW-YhO"/>
+                                                        <constraint firstItem="xzx-5H-pGg" firstAttribute="top" relation="greaterThanOrEqual" secondItem="VDP-cD-vfw" secondAttribute="top" constant="10" id="Hil-Cl-ZQd"/>
+                                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="c0R-gm-bXd" secondAttribute="bottom" constant="10" id="WIu-0U-CMq"/>
+                                                        <constraint firstItem="c0R-gm-bXd" firstAttribute="top" relation="greaterThanOrEqual" secondItem="VDP-cD-vfw" secondAttribute="topMargin" constant="10" id="h6z-EG-agG"/>
+                                                        <constraint firstItem="xzx-5H-pGg" firstAttribute="centerY" secondItem="VDP-cD-vfw" secondAttribute="centerY" id="mAM-LQ-aul"/>
+                                                        <constraint firstItem="xzx-5H-pGg" firstAttribute="leading" secondItem="VDP-cD-vfw" secondAttribute="leading" constant="20" id="ujb-2x-uCr"/>
+                                                        <constraint firstItem="c0R-gm-bXd" firstAttribute="leading" secondItem="xzx-5H-pGg" secondAttribute="trailing" constant="20" id="yY5-vX-2mM"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="dogBreedName" destination="c0R-gm-bXd" id="gO1-A4-HVt"/>
+                                                    <outlet property="dogBreedUIImageView" destination="xzx-5H-pGg" id="k47-r6-isL"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="zaO-2b-Y5a"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="1A9-2g-pqD" firstAttribute="top" secondItem="zaO-2b-Y5a" secondAttribute="top" id="2W7-nb-LLy"/>
+                            <constraint firstItem="1A9-2g-pqD" firstAttribute="leading" secondItem="zaO-2b-Y5a" secondAttribute="leading" id="Ntw-6U-94V"/>
+                            <constraint firstItem="zaO-2b-Y5a" firstAttribute="bottom" secondItem="1A9-2g-pqD" secondAttribute="bottom" id="VEH-kW-Gks"/>
+                            <constraint firstItem="zaO-2b-Y5a" firstAttribute="trailing" secondItem="1A9-2g-pqD" secondAttribute="trailing" id="b0L-Mj-SFa"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="2cL-BK-2Mt"/>
+                    <connections>
+                        <outlet property="tabeView" destination="yyl-1F-4tE" id="rsI-yd-Aqc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ngr-Oi-qFn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
