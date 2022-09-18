@@ -12,7 +12,7 @@ import UIKit
 class APICaller {
     
     func getBreedsData(completion: @escaping ([DogBreed] , String?) -> Void) {
-        var request = URLRequest(url: URL(string: "https://api.thedogapi.com/v1/breeds")!)
+        var request = URLRequest(url: URL(string: "https://api.thedogapi.com/v1/breeds/?order=ASC")!)
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("live_wx5mFpDS9CZglgVfDTSgNruAp4Lijmu3w9Vec9Y52SQUQhWydJe7BphQQvmsbg9G", forHTTPHeaderField: "x-api-key")
