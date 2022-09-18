@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import JHUD
 
 class DogBreedImagesPage: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -25,11 +26,14 @@ class DogBreedImagesPage: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     override func viewDidLoad() {
+        let jhud = JHUD(frame: self.view.bounds)
+        jhud.messageLabel.text = "Loading"
+        jhud.show(at: self.view, hudType: JHUDLoadingType(rawValue: 1)!)
+        self.tabBarController?.view.isUserInteractionEnabled = false
         super.viewDidLoad()
         self.title = "Dog Breed Images";
         tabeView.delegate = self
         tabeView.dataSource = self
-        
         APICaller().getBreedsData { dogBreedList, errorMessage in
             if errorMessage != nil {
                 let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
@@ -49,6 +53,8 @@ class DogBreedImagesPage: UIViewController, UITableViewDataSource, UITableViewDe
             } else {
                 self._dogBreedList = dogBreedList
             }
+            jhud.hide()
+            self.tabBarController?.view.isUserInteractionEnabled = true
             self.setupShowArrays(page: self._currentPage)
         }
     }
