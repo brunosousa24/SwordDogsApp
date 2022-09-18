@@ -112,11 +112,72 @@
                     <navigationItem key="navigationItem" id="2cL-BK-2Mt"/>
                     <connections>
                         <outlet property="tabeView" destination="yyl-1F-4tE" id="rsI-yd-Aqc"/>
+                        <segue destination="7gv-Ho-CyW" kind="push" identifier="fromImageListToDetailsSegue" id="o5P-bO-oVX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ngr-Oi-qFn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1841" y="-514"/>
+        </scene>
+        <!--Dog Breed Details Page-->
+        <scene sceneID="zXC-UG-NLi">
+            <objects>
+                <viewController id="7gv-Ho-CyW" customClass="DogBreedDetailsPage" customModule="DogsApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Hgt-bg-iOx">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="avM-5g-XS5">
+                                <rect key="frame" x="20" y="402" width="374" height="97"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1YL-3C-eXa">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z3m-eD-WQc">
+                                        <rect key="frame" x="0.0" y="25.5" width="374" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sHZ-aY-cM7">
+                                        <rect key="frame" x="0.0" y="51" width="374" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FmI-ia-yeb">
+                                        <rect key="frame" x="0.0" y="76.5" width="374" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="OYg-kU-6oa"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="OYg-kU-6oa" firstAttribute="trailing" secondItem="avM-5g-XS5" secondAttribute="trailing" constant="20" id="HHP-9J-V7w"/>
+                            <constraint firstItem="OYg-kU-6oa" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="avM-5g-XS5" secondAttribute="bottom" id="PN3-Od-FPU"/>
+                            <constraint firstItem="avM-5g-XS5" firstAttribute="leading" secondItem="OYg-kU-6oa" secondAttribute="leading" constant="20" id="Sed-LR-aty"/>
+                            <constraint firstItem="avM-5g-XS5" firstAttribute="top" relation="greaterThanOrEqual" secondItem="OYg-kU-6oa" secondAttribute="top" id="Svf-K6-yqY"/>
+                            <constraint firstItem="avM-5g-XS5" firstAttribute="centerY" secondItem="OYg-kU-6oa" secondAttribute="centerY" id="gLL-8L-fbk"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Szo-eM-Fth"/>
+                    <connections>
+                        <outlet property="dogBreedCategory" destination="Z3m-eD-WQc" id="iEy-Vo-Nex"/>
+                        <outlet property="dogBreedName" destination="1YL-3C-eXa" id="q1p-zd-KCD"/>
+                        <outlet property="dogBreedOrigin" destination="sHZ-aY-cM7" id="dVl-zs-yW1"/>
+                        <outlet property="dogBreedTemperament" destination="FmI-ia-yeb" id="NR8-fV-LOY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G29-1g-D9m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2854" y="-514"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Axm-A7-b8X">

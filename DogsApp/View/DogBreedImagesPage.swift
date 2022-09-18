@@ -28,31 +28,33 @@ class DogBreedImagesPage: UIViewController, UITableViewDataSource, UITableViewDe
         tabeView.dataSource = self
         _dogBreedListPage = tabBarController?.viewControllers?[1] as? DogBreedListPage
         
-        if let data = UserDefaults.standard.data(forKey: "dogBreedList") {
-            do {
-                // Create JSON Decoder
-                let decoder = JSONDecoder()
-                
-                // Decode Note
-                let dogBreedList = try decoder.decode([DogBreed].self, from: data)
-                self._dogBreedList = dogBreedList
-                self.setupShowArrays(page: _currentPage)
-                
-            } catch {
-                print("Unable to Decode Array of DogBreed (\(error))")
-            }
-        }
-        
         APICaller().getBreedsData { dogBreedList, errorMessage in
             if errorMessage != nil {
                 let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Close", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
-                return
+                
+                if let data = UserDefaults.standard.data(forKey: "dogBreedList") {
+                    do {
+                        let decoder = JSONDecoder()
+                        let dogBreedList = try decoder.decode([DogBreed].self, from: data)
+                        self._dogBreedList = dogBreedList
+                    } catch {
+                        print("Unable to Decode Array of DogBreed (\(error))")
+                    }
+                }
+                
+            } else {
+                self._dogBreedList = dogBreedList
             }
-            self._dogBreedList = dogBreedList
+            
             self.setupShowArrays(page: self._currentPage)
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     
@@ -65,6 +67,21 @@ class DogBreedImagesPage: UIViewController, UITableViewDataSource, UITableViewDe
         cell.dogBreedName.text = _dogBreedListShow[indexPath.row]._breedName
         cell.dogBreedUIImageView.loadFrom(URLAddress: _dogBreedListShow[indexPath.row]._breedImageURL)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self .performSegue(withIdentifier: "fromImageListToDetailsSegue", sender: self)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "fromImageListToDetailsSegue" {
+            if let viewController = segue.destination as? DogBreedDetailsPage {
+                if let indexPath = tabeView.indexPathForSelectedRow {
+                    viewController._dogBreed = _dogBreedListShow[indexPath.row]
+                }
+            }
+        }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
