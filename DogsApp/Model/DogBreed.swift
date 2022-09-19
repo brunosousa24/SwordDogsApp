@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct DogBreed : Codable {
     let _breedName: String
@@ -13,4 +14,9 @@ struct DogBreed : Codable {
     let _breedGroup: String
     let _breedOrigin: String
     let _breedTemperament: String
+    var _breedImage: UIImage?
+    
+    private enum CodingKeys: String, CodingKey {
+            case _breedName, _breedImageURL, _breedGroup, _breedOrigin, _breedTemperament
+        }
 }

@@ -78,4 +78,13 @@ class APICaller {
         task.resume()
     }
     
+    func getImage(from url: URL, completion: @escaping (UIImage?) -> ()) {
+        URLSession.shared.dataTask(with: url, completionHandler: { data, response, error in
+            guard let data = data, error == nil else { return }
+            DispatchQueue.main.async() { [weak self] in
+                completion(UIImage(data: data))
+            }
+        }).resume()
+    }
+    
 }

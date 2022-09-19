@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00401FC428D90BF6007901A6 /* DogBreedImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00401FC228D90BF6007901A6 /* DogBreedImageCollectionViewCell.swift */; };
+		00401FC528D90BF6007901A6 /* DogBreedImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00401FC328D90BF6007901A6 /* DogBreedImageCollectionViewCell.xib */; };
 		0051206728D65BAC000283B1 /* DogBreedImagesPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0051206628D65BAC000283B1 /* DogBreedImagesPage.swift */; };
 		0051206928D72F15000283B1 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0051206828D72F15000283B1 /* APICaller.swift */; };
 		0051206D28D7331E000283B1 /* DogBreed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0051206C28D7331E000283B1 /* DogBreed.swift */; };
@@ -23,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		00401FC228D90BF6007901A6 /* DogBreedImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogBreedImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		00401FC328D90BF6007901A6 /* DogBreedImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DogBreedImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		0051206628D65BAC000283B1 /* DogBreedImagesPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogBreedImagesPage.swift; sourceTree = "<group>"; };
 		0051206828D72F15000283B1 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
 		0051206C28D7331E000283B1 /* DogBreed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogBreed.swift; sourceTree = "<group>"; };
@@ -54,6 +58,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		00401FC028D907A4007901A6 /* DogBreedImagesPage */ = {
+			isa = PBXGroup;
+			children = (
+				0051206628D65BAC000283B1 /* DogBreedImagesPage.swift */,
+				0051207028D7AA78000283B1 /* DogBreedImageTableViewCell.swift */,
+				00401FC628D90BFE007901A6 /* DogBreedImageCollectionViewCell */,
+			);
+			path = DogBreedImagesPage;
+			sourceTree = "<group>";
+		};
+		00401FC128D907BD007901A6 /* DogBreedListPage */ = {
+			isa = PBXGroup;
+			children = (
+				0051206E28D73896000283B1 /* DogBreedListPage.swift */,
+				0051207528D7C4B7000283B1 /* DogBreedListTableViewCell.swift */,
+			);
+			path = DogBreedListPage;
+			sourceTree = "<group>";
+		};
+		00401FC628D90BFE007901A6 /* DogBreedImageCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				00401FC228D90BF6007901A6 /* DogBreedImageCollectionViewCell.swift */,
+				00401FC328D90BF6007901A6 /* DogBreedImageCollectionViewCell.xib */,
+			);
+			path = DogBreedImageCollectionViewCell;
+			sourceTree = "<group>";
+		};
 		00C47E1428D63B7600C67E53 = {
 			isa = PBXGroup;
 			children = (
@@ -90,10 +122,8 @@
 		00C47E3428D63B8200C67E53 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0051206628D65BAC000283B1 /* DogBreedImagesPage.swift */,
-				0051207028D7AA78000283B1 /* DogBreedImageTableViewCell.swift */,
-				0051206E28D73896000283B1 /* DogBreedListPage.swift */,
-				0051207528D7C4B7000283B1 /* DogBreedListTableViewCell.swift */,
+				00401FC028D907A4007901A6 /* DogBreedImagesPage */,
+				00401FC128D907BD007901A6 /* DogBreedListPage */,
 				0051207228D7BD04000283B1 /* DogBreedDetailsPage.swift */,
 				00C47E2628D63B7600C67E53 /* Main.storyboard */,
 			);
@@ -122,7 +152,6 @@
 				2275FB1974B0E7694153AF78 /* Pods-DogsApp.debug.xcconfig */,
 				F97CD1C81B76EB022B7669EA /* Pods-DogsApp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -196,6 +225,7 @@
 			files = (
 				00C47E2D28D63B7700C67E53 /* LaunchScreen.storyboard in Resources */,
 				00C47E2A28D63B7700C67E53 /* Assets.xcassets in Resources */,
+				00401FC528D90BF6007901A6 /* DogBreedImageCollectionViewCell.xib in Resources */,
 				00C47E2828D63B7600C67E53 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -249,6 +279,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00401FC428D90BF6007901A6 /* DogBreedImageCollectionViewCell.swift in Sources */,
 				0051206728D65BAC000283B1 /* DogBreedImagesPage.swift in Sources */,
 				00C47E2128D63B7600C67E53 /* AppDelegate.swift in Sources */,
 				0051206F28D73896000283B1 /* DogBreedListPage.swift in Sources */,

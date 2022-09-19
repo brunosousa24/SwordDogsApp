@@ -8,9 +8,10 @@
 import UIKit
 import JHUD
 
-class DogBreedImagesPage: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class DogBreedImagesPage: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
     
     @IBOutlet weak var tabeView: UITableView!
+    @IBOutlet weak var collectionView: UICollectionView!
     private var _dogBreedList : [DogBreed] = []
     private var _dogBreedListShow : [DogBreed] = []
     private var _currentPage : Int = 1
@@ -20,8 +21,13 @@ class DogBreedImagesPage: UIViewController, UITableViewDataSource, UITableViewDe
         let beforeCount = self._dogBreedListShow.count
         self._dogBreedListShow = Array(self._dogBreedList[0..<(self._dogBreedList.count > page*20 ? page*20 : self._dogBreedList.count)])
         let afterCount = self._dogBreedListShow.count
-        if afterCount != beforeCount {
-            self.tabeView .reloadData()
+        if afterCount != beforeCount || _currentPage == 1{
+            if !tabeView.isHidden {
+                tabeView .reloadData()
+            }
+            if !collectionView.isHidden {
+                collectionView.reloadData()
+            }
         }
     }
     
@@ -34,6 +40,19 @@ class DogBreedImagesPage: UIViewController, UITableViewDataSource, UITableViewDe
         self.title = "Dog Breed Images";
         tabeView.delegate = self
         tabeView.dataSource = self
+        tabeView.isHidden = false
+        
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.isHidden = true
+        collectionView.register(DogBreedImageCollectionViewCell.nib(), forCellWithReuseIdentifier: DogBreedImageCollectionViewCell.identifier)
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: 100, height: 150)
+        collectionView.collectionViewLayout = layout
+        
+        let changeView = UIBarButtonItem(title: "Grid", style: .plain, target: self, action: #selector(changeViewTapped))
+        navigationItem.rightBarButtonItems = [changeView]
+        
         APICaller().getBreedsData { dogBreedList, errorMessage in
             if errorMessage != nil {
                 let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
@@ -64,7 +83,16 @@ class DogBreedImagesPage: UIViewController, UITableViewDataSource, UITableViewDe
         self.tabBarController?.tabBar.isHidden = false
     }
     
+    @objc func changeViewTapped() {
+        navigationItem.rightBarButtonItems?[0].title = navigationItem.rightBarButtonItems?[0].title == "Grid" ? "Table" : "Grid"
+        tabeView.isHidden = !tabeView.isHidden
+        collectionView.isHidden = !collectionView.isHidden
+        _currentPage = 1;
+        setupShowArrays(page: _currentPage)
+    }
     
+    
+    // MARK: - Table View
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return _dogBreedListShow.count
     }
@@ -72,7 +100,14 @@ class DogBreedImagesPage: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "dogBreedImageTableViewCell") as! DogBreedImageTableViewCell
         cell.dogBreedName.text = _dogBreedListShow[indexPath.row]._breedName
-        cell.dogBreedUIImageView.loadFrom(URLAddress: _dogBreedListShow[indexPath.row]._breedImageURL)
+        if _dogBreedListShow[indexPath.row]._breedImage != nil {
+            cell.dogBreedUIImageView.image = _dogBreedListShow[indexPath.row]._breedImage
+        } else {
+            APICaller().getImage(from: URL(string: _dogBreedListShow[indexPath.row]._breedImageURL)!) { image in
+                self._dogBreedListShow[indexPath.row]._breedImage = image
+                cell.dogBreedUIImageView.image = image
+            }
+        }
         return cell
     }
     
@@ -81,19 +116,52 @@ class DogBreedImagesPage: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    // MARK: - Collection View
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return _dogBreedListShow.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DogBreedImageCollectionViewCell.identifier, for: indexPath) as! DogBreedImageCollectionViewCell
+        cell.dogBreedName.text = _dogBreedListShow[indexPath.row]._breedName
+        if _dogBreedListShow[indexPath.row]._breedImage != nil {
+            cell.dogBreedUIImageView.image = _dogBreedListShow[indexPath.row]._breedImage
+        } else {
+            APICaller().getImage(from: URL(string: _dogBreedListShow[indexPath.row]._breedImageURL)!) { image in
+                self._dogBreedListShow[indexPath.row]._breedImage = image
+                cell.dogBreedUIImageView.image = image
+            }
+        }
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self .performSegue(withIdentifier: "fromImageListToDetailsSegue", sender: self)
+        collectionView.deselectItem(at: indexPath, animated: true)
+    }
+    
+    // MARK: - Prepare Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "fromImageListToDetailsSegue" {
             if let viewController = segue.destination as? DogBreedDetailsPage {
                 if let indexPath = tabeView.indexPathForSelectedRow {
                     viewController._dogBreed = _dogBreedListShow[indexPath.row]
+                } else if let indexPaths = collectionView.indexPathsForSelectedItems {
+                    viewController._dogBreed = _dogBreedListShow[indexPaths[0].row]
                 }
             }
         }
     }
     
+    // MARK: - Pagination Handling
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let position = scrollView.contentOffset.y
-        if position > (tabeView.contentSize.height-50-scrollView.frame.size.height) {
+        if !tabeView.isHidden && position > (tabeView.contentSize.height-50-scrollView.frame.size.height) {
+            _currentPage+=1
+            self.setupShowArrays(page: _currentPage)
+        }
+        if !collectionView.isHidden && position > (collectionView.contentSize.height-50-scrollView.frame.size.height) {
             _currentPage+=1
             self.setupShowArrays(page: _currentPage)
         }
