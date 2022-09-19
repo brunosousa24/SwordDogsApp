@@ -84,6 +84,9 @@ class DogBreedImagesPage: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     @objc func changeViewTapped() {
+        tabeView.setContentOffset(.zero, animated: false)
+        collectionView.setContentOffset(.zero, animated: false)
+        self.navigationItem.rightBarButtonItems?[0].isEnabled = true
         navigationItem.rightBarButtonItems?[0].title = navigationItem.rightBarButtonItems?[0].title == "Grid" ? "Table" : "Grid"
         tabeView.isHidden = !tabeView.isHidden
         collectionView.isHidden = !collectionView.isHidden
@@ -156,6 +159,7 @@ class DogBreedImagesPage: UIViewController, UITableViewDataSource, UITableViewDe
     
     // MARK: - Pagination Handling
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.navigationItem.rightBarButtonItems?[0].isEnabled = false
         let position = scrollView.contentOffset.y
         if !tabeView.isHidden && position > (tabeView.contentSize.height-50-scrollView.frame.size.height) {
             _currentPage+=1
@@ -164,6 +168,15 @@ class DogBreedImagesPage: UIViewController, UITableViewDataSource, UITableViewDe
         if !collectionView.isHidden && position > (collectionView.contentSize.height-50-scrollView.frame.size.height) {
             _currentPage+=1
             self.setupShowArrays(page: _currentPage)
+        }
+    }
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        self.navigationItem.rightBarButtonItems?[0].isEnabled = true
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if !decelerate {
+            self.navigationItem.rightBarButtonItems?[0].isEnabled = true
         }
     }
     
