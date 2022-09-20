@@ -107,8 +107,10 @@ class DogBreedImagesPage: UIViewController, UITableViewDataSource, UITableViewDe
             cell.dogBreedUIImageView.image = _dogBreedListShow[indexPath.row]._breedImage
         } else {
             APICaller().getImage(from: URL(string: _dogBreedListShow[indexPath.row]._breedImageURL)!) { image in
-                self._dogBreedListShow[indexPath.row]._breedImage = image
-                cell.dogBreedUIImageView.image = image
+                self._dogBreedList[indexPath.row]._breedImage = image
+                if let cell = tableView.cellForRow(at: indexPath) {
+                    (cell as! DogBreedImageTableViewCell).dogBreedUIImageView.image = image
+                }
             }
         }
         return cell
@@ -132,8 +134,10 @@ class DogBreedImagesPage: UIViewController, UITableViewDataSource, UITableViewDe
             cell.dogBreedUIImageView.image = _dogBreedListShow[indexPath.row]._breedImage
         } else {
             APICaller().getImage(from: URL(string: _dogBreedListShow[indexPath.row]._breedImageURL)!) { image in
-                self._dogBreedListShow[indexPath.row]._breedImage = image
-                cell.dogBreedUIImageView.image = image
+                self._dogBreedList[indexPath.row]._breedImage = image
+                if let cell = collectionView.cellForItem(at: indexPath) {
+                    (cell as! DogBreedImageCollectionViewCell).dogBreedUIImageView.image = image
+                }
             }
         }
         return cell
