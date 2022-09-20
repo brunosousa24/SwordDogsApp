@@ -8,7 +8,7 @@
 import UIKit
 import JHUD
 
-class DogBreedImagesPage: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
+class DogBreedImagesPage: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var tabeView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -16,6 +16,10 @@ class DogBreedImagesPage: UIViewController, UITableViewDataSource, UITableViewDe
     private var _dogBreedListShow : [DogBreed] = []
     private var _currentPage : Int = 1
     
+    
+    var collectionCellEstimatedWidth = 100.0
+    var collectionCellEstimatedHeight = 150.0
+    var collectionCellMarginSize = 16.0
     
     fileprivate func setupShowArrays(page: Int) {
         let beforeCount = self._dogBreedListShow.count
@@ -47,7 +51,9 @@ class DogBreedImagesPage: UIViewController, UITableViewDataSource, UITableViewDe
         collectionView.isHidden = true
         collectionView.register(DogBreedImageCollectionViewCell.nib(), forCellWithReuseIdentifier: DogBreedImageCollectionViewCell.identifier)
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 100, height: 150)
+        layout.minimumInteritemSpacing = collectionCellMarginSize
+        layout.minimumLineSpacing = collectionCellMarginSize
+        layout.sectionInset = UIEdgeInsets(top: collectionCellMarginSize, left: collectionCellMarginSize, bottom: collectionCellMarginSize, right: collectionCellMarginSize)
         collectionView.collectionViewLayout = layout
         
         let changeView = UIBarButtonItem(title: "Grid", style: .plain, target: self, action: #selector(changeViewTapped))
@@ -146,6 +152,15 @@ class DogBreedImagesPage: UIViewController, UITableViewDataSource, UITableViewDe
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self .performSegue(withIdentifier: "fromImageListToDetailsSegue", sender: self)
         collectionView.deselectItem(at: indexPath, animated: true)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cellCount = floor(self.view.frame.size.width / collectionCellEstimatedWidth)
+        let outsideMargin = collectionCellMarginSize * 2
+        let insideMargin = collectionCellMarginSize * (cellCount-1)
+        let width = (self.view.frame.size.width - insideMargin - outsideMargin)/cellCount
+        
+        return CGSize(width: width, height: collectionCellEstimatedHeight)
     }
     
     // MARK: - Prepare Segue
