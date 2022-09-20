@@ -14,13 +14,21 @@ class DogBreedDetailsPage: UIViewController {
     @IBOutlet weak var dogBreedOrigin: UILabel!
     @IBOutlet weak var dogBreedTemperament: UILabel!
     
+    fileprivate func setText(label : UILabel , text : String,  addedText : String) {
+        if text != "" {
+            label.text = addedText+text
+        } else {
+            label.isHidden = true
+        }
+    }
+    
     override func viewDidLoad() {
         if let dogBreed = _dogBreed {
             self.title = dogBreed._breedName
-            dogBreedName.text = dogBreed._breedName
-            dogBreedCategory.text = dogBreed._breedGroup
-            dogBreedOrigin.text = dogBreed._breedOrigin
-            dogBreedTemperament.text = dogBreed._breedTemperament
+            setText(label: dogBreedName, text: dogBreed._breedName, addedText: "Name : ")
+            setText(label: dogBreedCategory, text: dogBreed._breedGroup, addedText: "Group : ")
+            setText(label: dogBreedOrigin, text: dogBreed._breedOrigin, addedText: "Origin : ")
+            setText(label: dogBreedTemperament, text: dogBreed._breedTemperament, addedText: "Temperament : ")
         }
     }
     

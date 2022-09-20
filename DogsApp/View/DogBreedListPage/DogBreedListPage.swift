@@ -57,8 +57,8 @@ class DogBreedListPage: UIViewController, UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "dogBreedListTableViewCell") as! DogBreedListTableViewCell
         cell.dogBreedName.text = _dogBreedFilteredShowList[indexPath.row]._breedName
-        cell.dogBreedCategory.text = _dogBreedFilteredShowList[indexPath.row]._breedGroup
-        cell.dogBreedOrigin.text = _dogBreedFilteredShowList[indexPath.row]._breedOrigin
+        cell.dogBreedCategory.text = _dogBreedFilteredShowList[indexPath.row]._breedGroup != "" ? "Group | " + _dogBreedFilteredShowList[indexPath.row]._breedGroup : ""
+        cell.dogBreedOrigin.text = _dogBreedFilteredShowList[indexPath.row]._breedOrigin != "" ? "Origin | " + _dogBreedFilteredShowList[indexPath.row]._breedOrigin : ""
         return cell
     }
     
